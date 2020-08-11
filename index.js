@@ -6,8 +6,6 @@ app.get("/", (req, res) => {
   res.send({ hi: "there" });
 });
 
-console.log(process.env)
-
 app.listen(PORT);
 
 
