@@ -1,0 +1,24 @@
+const KEYS = require("../config/keys");
+const stripe = require("stripe")(KEYS.stripeSecretKey);
+
+module.exports = (app) => {
+  app.post("/api/stripe", async (req, res) => {
+    if (!req.user) {
+      return res.status(401).send({ error: "you must login" });
+    }
+
+    const { id } = req.body;
+
+    const charge = await stripe.charges.create({
+      amount: 500,
+      currency: "usd",
+      description: "$5 dollars for 5 credits",
+      source: id,
+    });
+
+    req.user.credits += 5;
+    const user = await req.user.save();
+
+    res.send(user);
+  });
+};
