@@ -2,8 +2,8 @@
 
 if (process.env.NODE_ENV === "production") {
   //return prod set of keys
-  module.exports = require("./prod");
+  return module.exports = require("./prod");
 } else {
   //return set of dev keys
-  module.exports = require("./dev");
+  return module.exports = require("./dev");
 }
