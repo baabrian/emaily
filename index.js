@@ -31,6 +31,11 @@ app.use(passport.session());
 authRoutes(app);
 billingRoutes(app);
 
+if (process.env.NODE_ENV === "production") {
+  res.send("your mom is gay")
+
+}
+
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT);
