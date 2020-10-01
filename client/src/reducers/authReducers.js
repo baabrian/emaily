@@ -2,6 +2,7 @@ import { FETCH_USER } from "../actions/types";
 
 const INITIAL_STATE = {
   userId: null,
+  credits: 0,
 };
 
 export default (state = INITIAL_STATE, action) => {

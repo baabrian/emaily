@@ -1,13 +1,14 @@
 const express = require("express");
+require("./models");
 const authRoutes = require("./routes/authRoutes");
+const billingRoutes = require("./routes/billingRoutes");
+const surveyRoutes = require("./routes/surveyRoutes");
 const cookieSession = require("cookie-session");
 const passport = require("passport");
 const keys = require("./config/keys");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const { TOTALDAYS, ONEDAY, ONEHOUR, ONEMINUTE, MILISEC } = require("./globals");
-const billingRoutes = require("./routes/billingRoutes");
-require("./models/User");
 require("./services/passport");
 
 mongoose.connect(keys.mongoURI, {
@@ -30,12 +31,11 @@ app.use(passport.session());
 
 authRoutes(app);
 billingRoutes(app);
+surveyRoutes(app);
 
 if (process.env.NODE_ENV === "production") {
-  // Exprees will serve up production assets
   app.use(express.static("client/build"));
 
-  // Express serve up index.html file if it doesn't recognize route
   const path = require("path");
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
