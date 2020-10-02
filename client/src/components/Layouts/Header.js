@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
-import Payments from "./Payments";
+import Payments from "../Payments";
 
 const Header = ({ auth }) => {
   const renderContent = () => {

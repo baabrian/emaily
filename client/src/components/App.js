@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import DashBoard from "./DashBoard";
 import Landing from "./Landing";
-import Survey from "./Survey";
-import Header from "./Header";
-import SurveyNew from "./SurveyNew";
+import Survey from "./Surveys/Survey";
+import Header from "./Layouts/Header";
+import SurveyNew from "./Surveys/SurveyNew";
 import { connect } from "react-redux";
 import { fetchUser } from "../actions";
 
@@ -20,7 +20,7 @@ const App = ({ fetchUser }) => {
         <Route exact path="/" component={Landing} />
         <Route exact path="/dashboard" component={DashBoard} />
         <Route exact path="/survey" component={Survey} />
-        <Route path="/survey/new" component={SurveyNew} />
+        <Route path="/surveys/new" component={SurveyNew} />
       </BrowserRouter>
     </div>
   );
