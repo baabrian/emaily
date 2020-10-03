@@ -35,7 +35,7 @@ const Header = ({ auth }) => {
   return (
     <nav>
       <div className="nav-wrapper">
-        <Link to={auth.userId ? "/survey" : "/"} className="left brand-logo">
+        <Link to={auth.userId ? "/surveys" : "/"} className="left brand-logo">
           Emaily
         </Link>
         <ul className="right">{renderContent()}</ul>

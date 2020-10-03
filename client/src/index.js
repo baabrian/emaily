@@ -19,4 +19,3 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-console.log("Environemnt is", process.env.NODE_ENV);
