@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import SurveyForm from "./SurveyForm";
-import SurveyReview from "./SurveyFormReview";
+import { reduxForm } from "redux-form";
 import SurveyFormReview from "./SurveyFormReview";
 
 const SurveyNew = () => {
@@ -16,4 +16,6 @@ const SurveyNew = () => {
   );
 };
 
-export default SurveyNew;
+export default reduxForm({
+  form: "surveyForm",
+})(SurveyNew);
