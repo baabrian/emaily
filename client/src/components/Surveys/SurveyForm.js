@@ -2,19 +2,13 @@ import React from "react";
 import { reduxForm, Field } from "redux-form";
 import SurveyField from "./SurveyField";
 import { Link } from "react-router-dom";
+import formFields from "./gloabls/formFields";
 
 import { validateEmails } from "../../utils/validateEmails";
 
-const FIELDS = [
-  { label: "Survey Title", name: "title" },
-  { label: "Subject Line", name: "subject" },
-  { label: "Email Body", name: "body" },
-  { label: "Emails", name: "recipients" },
-];
-
-const SurveyForm = ({ handleSubmit }) => {
+const SurveyForm = ({ handleSubmit, showReview, review }) => {
   const renderFields = () => {
-    return FIELDS.map(({ label, name }) => {
+    return formFields.map(({ label, name }) => {
       return (
         <Field
           key={name}
@@ -29,7 +23,7 @@ const SurveyForm = ({ handleSubmit }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit((value) => console.log(value))}>
+      <form onSubmit={handleSubmit(() => showReview((review = !review)))}>
         {renderFields()}
         <Link
           to="/surveys"
@@ -50,16 +44,18 @@ const SurveyForm = ({ handleSubmit }) => {
 function validate(values) {
   const errors = {};
 
-  FIELDS.forEach(({ name }) => {
+  errors.recipients = validateEmails(values.recipients || "");
+
+  formFields.forEach(({ name }) => {
     if (!values[name]) {
       errors[name] = "You must provide a value";
     }
   });
-  validateEmails(FIELDS);
   return errors;
 }
 
 export default reduxForm({
   form: "surveyForm",
   validate,
+  destroyOnUnmount: false,
 })(SurveyForm);
