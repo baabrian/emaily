@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import formFields from "./gloabls/formFields";
 import { submitSurvey } from "../../actions";
-import { withRouter } from "react-router-dom";
+import { withRouter } from "react-router";
 
 const SurveyFormReview = ({
   review,
@@ -46,7 +46,6 @@ const mapsStateToProps = (state) => {
   };
 };
 
-export default connect(
-  mapsStateToProps,
-  submitSurvey
-)(withRouter(SurveyFormReview));
+export default connect(mapsStateToProps, { submitSurvey })(
+  withRouter(SurveyFormReview)
+);
